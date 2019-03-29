@@ -93,6 +93,8 @@ class PyTesseract(object):
                 ver_str = line.split(' ')[1]
                 if ver_str.endswith('dev'): # Fix for version strings that end in 'dev'
                     ver_str = ver_str[:-3]
+                if ver_str.startswith('v'): # Fix for version strings that add 'v' before version numbers
+                    ver_str = ver_str[1:]
 
         # Iterate through the version dots
         ver = [int(x) for x in ver_str.split('.')]
