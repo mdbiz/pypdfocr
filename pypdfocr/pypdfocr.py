@@ -99,7 +99,7 @@ class PyPDFOCR(object):
            :rtype: dict
         """
         with config_file:
-            myconfig = yaml.load(config_file)
+            myconfig = yaml.load(config_file, Loader=yaml.SafeLoader)
         return myconfig
 
 
