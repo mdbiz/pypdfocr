@@ -1,7 +1,9 @@
-PyPDFOCR - Tesseract-OCR based PDF filing
+SlimPyPDFOCR Fork - Simple Tesseract-OCR based PDF filing
 =========================================
 
-|image0| |image1| |image2| |passing| |quality| |Coverage Status|
+This is slimmed down fork of PyPDFOCR.
+Removing unnecessary options and fixing usual bugs that were left since project abandonment.
+Also updating necessary part to enable using newer versions of dependencies: Tesseract OCR software, GhostScript, ImageMagick and Poppler.
 
 This program will help manage your scanned PDFs by doing the following:
 
@@ -105,6 +107,14 @@ scanned PDF) are placed after processing. An example is given below:
             - orbitz
         receipts:
             - receipt
+            
+Windows path format example:
+
+::
+
+    target_folder: "C:/OCR/docs/filed"
+    default_folder: "C:/OCR/docs/filed/manual_sort"
+    original_move_folder: "C:/OCR/docs/originals"
 
 The ``target_folder`` is the root of your filing cabinet. Any PDF moving
 will happen in sub-directories under this directory.
@@ -227,6 +237,20 @@ tesseract.  Use the following in your configuration file:
     preprocess:
         threads: 8
 
+On Windows use following format:
+
+::
+
+    tesseract:
+        binary: "C:/Program Files/Tesseract-OCR/tesseract.exe"
+        threads: 8
+
+    ghostscript:
+        binary: "C:/Program Files/gs/gs9.26/bin/gswin64c.exe"
+
+    preprocess:
+        threads: 8
+
 Handling disk time-outs
 ~~~~~~~~~~~~~~~~~~~~~~~
 If you need to increase the time interval (default 3 seconds) between new
@@ -250,25 +274,6 @@ PyPDFOCR is available in PyPI, so you can just run:
 
     pip install pypdfocr
 
-Please note that some of the 3rd-party libraries required by PyPDFOCR wiill
-require some build tools, especially on a default Ubuntu system.  If you run
-into any issues using pip install, you may want to install the
-following packages on Ubuntu and try again:
-
-- gcc
-- libjpeg-dev
-- zlib-bin
-- zlib1g-dev
-- python-dev
-
-For those on **Windows**, because it's such a pain to get all the PIL
-and PDF dependencies installed, I've gone ahead and made an executable
-called
-`pypdfocr.exe <https://github.com/virantha/pypdfocr/blob/master/dist/pypdfocr.exe?raw=true>`__
-
-You still need to install Tesseract, GhostScript, etc. as detailed below in
-the external dependencies list.
-
 Manual install
 ~~~~~~~~~~~~~~
 
@@ -276,7 +281,7 @@ Clone the source directly from github (you need to have git installed):
 
 ::
 
-    git clone https://github.com/virantha/pypdfocr.git
+    git clone https://github.com/mdbiz/pypdfocr.git
 
 Then, install the following third-party python libraries:
 
@@ -347,15 +352,6 @@ then any landscape document will produce garbage
 Disclaimer
 ##########
 
-While test coverage is at 84% right now, Sphinx docs generation is at an
-early stage. The software is distributed on an "AS IS" BASIS, WITHOUT
+The software is distributed on an "AS IS" BASIS, WITHOUT
 WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-.. |image0| image:: https://badge.fury.io/py/pypdfocr.png
-   :target: https://pypi.python.org/pypi/pypdfocr
-.. |image1| image:: https://pypip.in/d/pypdfocr/badge.png
-.. |image2| image:: https://pypip.in/license/pypdfocr/badge.png
-.. |passing| image:: https://scrutinizer-ci.com/g/virantha/pypdfocr/badges/build.png?b=master
-.. |quality| image:: https://scrutinizer-ci.com/g/virantha/pypdfocr/badges/quality-score.png?b=master
-.. |Coverage Status| image:: https://coveralls.io/repos/virantha/pypdfocr/badge.png?branch=develop
-   :target: https://coveralls.io/r/virantha/pypdfocr
