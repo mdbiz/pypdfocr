@@ -3,7 +3,7 @@ SlimPyPDFOCR Fork - Simple Tesseract-OCR based PDF filing
 
 This is slimmed down fork of PyPDFOCR.
 Removing unnecessary options and fixing usual bugs that were left since project abandonment.
-Also updating necessary part to enable using newer versions of dependencies: Tesseract OCR software, GhostScript, ImageMagick and Poppler.
+Also updating necessary parts to enable using newer versions of dependencies: Tesseract OCR software, GhostScript, ImageMagick and Poppler.
 
 This program will help manage your scanned PDFs by doing the following:
 
