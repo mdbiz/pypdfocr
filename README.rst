@@ -8,6 +8,7 @@ Also updating necessary parts to enable using newer versions of dependencies: Te
 Evernote support is removed. Slim aims to be simple PDF OCR management and thus removing Evernote and focusing on folder/file management.
 
 This fork is focused on Windows usage. No guarantee for Mac OS and Linux.
+SlimPyPDFOCR works with Python 2. No support for Python 3.
 
 This program will help manage your scanned PDFs by doing the following:
 
@@ -210,14 +211,22 @@ option in the configuration file:
 Installation
 ############
 
+SlimPyPDFOCR works with Python 2. No support for Python 3.
+
 Using pip
 ~~~~~~~~~
 
-PyPDFOCR is available in PyPI, so you can just run:
+You can just run:
 
 ::
 
-    pip install pypdfocr
+    pip install git+git://github.com/mdbiz/pypdfocr.git
+
+Or:
+
+::
+
+    pip install git+https://github.com/mdbiz/pypdfocr.git
 
 Manual install
 ~~~~~~~~~~~~~~
