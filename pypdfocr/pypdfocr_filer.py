@@ -16,7 +16,7 @@ import os, logging
 
 class PyFiler(object):
     """ Abstract base class for defining filing objects, whether you want to 
-    save to a file-system/directory structure or to something like Evernote
+    save to a file-system/directory structure
 
     """
     __metaclass__ = abc.ABCMeta
