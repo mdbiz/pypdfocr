@@ -8,4 +8,3 @@ Todo list
 - Add more option specifiers to tesseract and ghostscript
 - Add Python 3 support
 - Check filename checker. Maybe UTF-8 encoding problem
-- Remove Evernote
