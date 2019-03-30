@@ -2,8 +2,6 @@
 import pypdfocr.pypdfocr_watcher as P
 import pytest
 
-import evernote.api.client
-import evernote.edam.type.ttypes as Types
 import hashlib
 import time
 import os
