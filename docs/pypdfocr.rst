@@ -85,17 +85,6 @@ pypdfocr.pypdfocr_filer_dirs module
     :show-inheritance:
     :private-members:
 
-pypdfocr.pypdfocr_filer_evernote module
-----------------------------------------
-
-.. automodule:: pypdfocr.pypdfocr_filer_evernote
-    :members:
-    :undoc-members:
-    :show-inheritance:
-    :private-members:
-
-    .. automethod:: _check_and_make_notebook(self,notebook_name)
-
 Module contents
 ---------------
 
