@@ -15,7 +15,6 @@ This program will help manage your scanned PDFs by doing the following:
    automatically run OCR on them
 -  Optionally, file the scanned PDFs into directories based on simple
    keyword matching that you specify
--  Evernote auto-upload and filing based on keyword search
 -  Email status when it files your PDF
 
 More links:
@@ -140,64 +139,6 @@ was found.
 If there is any naming conflict during filing, the program will add an
 underscore followed by a number to each filename, in order to avoid
 overwriting files that may already be present.
-
-Evernote upload:
-~~~~~~~~~~~~~~~~
-
-Evernote authentication token
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To enable Evernote support, you will need to `get a developer token for
-your Evernote
-account. <https://www.evernote.com/api/DeveloperToken.action>`__. You
-should note that this script will never delete or modify existing notes
-in your account, and limits itself to creating new Notebooks and Notes.
-Once you get that token, you copy and paste it into your configuration
-file as shown below
-
-Evernote filing usage
-^^^^^^^^^^^^^^^^^^^^^
-
-To automatically upload the OCR'ed pdf to a folder based on a keyword,
-use the ``-e`` option instead of the ``-f`` auto filing option.
-
-::
-
-    pypdfocr filename.pdf -e -c config.yaml
-
-Similarly, you can also do this in folder monitoring mode:
-
-::
-
-    pypdfocr -w watch_directory -e -c config.yaml
-
-Evernote filing configuration file
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The config file shown above only needs to change slightly. The folders
-section is completely unchanged, but note that ``target_folder`` is the
-name of your "Notebook stack" in Evernote, and the ``default_folder``
-should just be the default Evernote upload notebook name.
-
-::
-
-    target_folder: "evernote_stack"
-    default_folder: "default"
-    original_move_folder: "docs/originals"
-    evernote_developer_token: "YOUR_TOKEN"
-
-    folders:
-        finances:
-            - american express
-            - chase card
-            - internal revenue service
-        travel:
-            - boarding pass
-            - airlines
-            - expedia
-            - orbitz
-        receipts:
-            - receipt
 
 Auto email
 ~~~~~~~~~~
