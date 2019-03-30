@@ -2,4 +2,3 @@ pillow>=2.2
 reportlab>=2.7<=3.4
 watchdog>=0.6.0
 pypdf2>=1.23
-evernote
