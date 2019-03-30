@@ -5,6 +5,8 @@ This is slimmed down fork of PyPDFOCR.
 Removing unnecessary options and fixing usual bugs that were left since project abandonment.
 Also updating necessary parts to enable using newer versions of dependencies: Tesseract OCR software, GhostScript, ImageMagick and Poppler.
 
+This fork is focused on Windows usage. No guarantee for Mac OS and Linux.
+
 This program will help manage your scanned PDFs by doing the following:
 
 -  Take a scanned PDF file and run OCR on it (using the Tesseract OCR
