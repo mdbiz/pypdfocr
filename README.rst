@@ -286,6 +286,8 @@ On Mac OS X, you can install these using homebrew:
 
 On Windows, please use the installers provided on their download pages.
 
+\*\* Important \*\* ImageMagick, with newer versions you need to select legacy tools during installation process.
+
 \*\* Important \*\* Tesseract version 3.02.02 or newer required
 (apparently 3.02.01-6 and possibly others do not work due to a hocr
 output format change that I'm not planning to address). On Ubuntu, you
