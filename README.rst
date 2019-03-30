@@ -268,7 +268,7 @@ the path:
 -  Tesseract OCR software https://code.google.com/p/tesseract-ocr/
 -  GhostScript http://www.ghostscript.com/
 -  ImageMagick http://www.imagemagick.org/
--  Poppler http://poppler.freedesktop.org/  (`Windows <http://sourceforge.net/projects/poppler-win32/>`__)
+-  Poppler http://poppler.freedesktop.org/  (`Windows <https://blog.alivate.com.au/poppler-windows/>`__) (`Windows Alt. <http://sourceforge.net/projects/poppler-win32/>`__)
 
 Poppler is only required if you want pypdfocr to figure out the original PDF resolution
 automatically; just make sure you have ``pdfimages`` in your path.   Note that the 
