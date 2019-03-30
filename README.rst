@@ -209,6 +209,21 @@ option in the configuration file:
     watch:
         scan_interval: 6
 
+Using absolute paths: file, directory or configuration file
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can use absolute paths for files, directory or configuration file when calling pypdfocr.
+Examples below.
+
+::
+
+    pypdfocr C:\filename.pdf -f -c C:\config.yaml
+
+::
+
+    pypdfocr -w C:\watch_directory -f -c C:\config.yaml
+
+
 Installation
 ############
 
@@ -305,6 +320,33 @@ then you need to find your tessdata directory and do the following:
 ``osd`` stands for Orientation and Script Detection, so you need to copy the .traineddata
 for whatever language you want to scan in as ``osd.traineddata``.  If you don't do this step, 
 then any landscape document will produce garbage
+
+Windows install
+~~~~~~~~~~~~~~~~~~~~~
+
+Install Tesseract OCR software https://code.google.com/p/tesseract-ocr/
+
+Install GhostScript http://www.ghostscript.com/
+
+Install ImageMagick http://www.imagemagick.org/
+
+- Select installation of legacy tools during ImageMagick install
+
+Download Poppler http://poppler.freedesktop.org/  (`Windows <https://blog.alivate.com.au/poppler-windows/>`__) (`Windows Alt. <http://sourceforge.net/projects/poppler-win32/>`__)
+
+- Extract Poppler to C:\\Program Files
+
+- Add poppler location C:\\Program Files\\poppler-0.68.0\\bin to your system PATH
+
+Install SlimPyPDFOCR using pip (instructions above)
+
+Downgrade reportlab (Reason: AttributeError: RotatedPara instance has no attribute 'blPara')
+
+::
+
+    pip uninstall reportlab
+    pip install reportlab==3.4.0
+
 
 Disclaimer
 ##########
