@@ -48,7 +48,7 @@ class _Popen(multiprocessing.forking.Popen):
 forking.Popen = _Popen
 
 #class Process(multiprocessing.Process):
-#_Popen = _Popen
+#    _Popen = _Popen
 
 # ...
 
