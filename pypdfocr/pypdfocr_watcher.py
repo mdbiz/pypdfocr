@@ -15,7 +15,7 @@ from watchdog.observers import Observer
 from watchdog.events import LoggingEventHandler
 from watchdog.events import FileSystemEventHandler
 
-        
+
 class PyPdfWatcher(FileSystemEventHandler):
     """
         Watch a folder for new pdf files.
@@ -49,11 +49,10 @@ class PyPdfWatcher(FileSystemEventHandler):
             if newFile:
                 yield newFile
         self.observer.join()
-            
 
     def stop(self):
         self.observer.stop()
-        
+
     def rename_file_with_spaces(self, pdf_filename):
         """
             Rename any portion of a filename that has spaces in the basename 
@@ -67,15 +66,16 @@ class PyPdfWatcher(FileSystemEventHandler):
         """
         filepath, filename = os.path.split(pdf_filename)
         if ' ' in filename:
-            newFilename = os.path.join(filepath, filename.replace(' ','_'))
+            newFilename = os.path.join(filepath, filename.replace(' ', '_'))
             logging.debug("Renaming spaces")
-            logging.debug("---> %s \n ------> %s" % (pdf_filename, newFilename))
-            shutil.move(pdf_filename, newFilename) 
+            logging.debug("---> %s \n ------> %s" % (pdf_filename,
+                                                     newFilename))
+            shutil.move(pdf_filename, newFilename)
             return newFilename
         else:
             return pdf_filename
 
-    def check_for_new_pdf(self,ev_path):
+    def check_for_new_pdf(self, ev_path):
         """
             Called by the file watching api on any file 
             creations/modifications. For any file ending with ".pdf", but not 
@@ -101,31 +101,31 @@ class PyPdfWatcher(FileSystemEventHandler):
                 PyPdfWatcher.events_lock.acquire()
                 if not ev_path in PyPdfWatcher.events:
                     PyPdfWatcher.events[ev_path] = time.time()
-                    logging.info ("Adding %s to event queue" % ev_path)
+                    logging.info("Adding %s to event queue" % ev_path)
                 else:
                     if PyPdfWatcher.events[ev_path] == -1:
-                        logging.info ( "%s removing from event queue" % (ev_path))
+                        logging.info("%s removing from event queue" %
+                                     (ev_path))
                         del PyPdfWatcher.events[ev_path]
-                    else: 
+                    else:
                         newTime = time.time()
-                        logging.debug ( 
-                                "%s already in event queue, updating timestamp to %d" 
-                                % (ev_path, newTime))
-                        PyPdfWatcher.events[ev_path]  = newTime
+                        logging.debug(
+                            "%s already in event queue, updating timestamp to %d"
+                            % (ev_path, newTime))
+                        PyPdfWatcher.events[ev_path] = newTime
                 PyPdfWatcher.events_lock.release()
 
-                      
-              
     def on_created(self, event):
-        logging.debug ("on_created: %s at time %d" % (event.src_path, time.time()))
+        logging.debug("on_created: %s at time %d" % (event.src_path,
+                                                     time.time()))
         self.check_for_new_pdf(event.src_path)
 
     def on_moved(self, event):
-        logging.debug ("on_moved: %s" % event.src_path)
+        logging.debug("on_moved: %s" % event.src_path)
         self.check_for_new_pdf(event.dest_path)
 
     def on_modified(self, event):
-        logging.debug ("on_modified: %s" % event.src_path)
+        logging.debug("on_modified: %s" % event.src_path)
         self.check_for_new_pdf(event.src_path)
 
     def check_queue(self):
@@ -154,6 +154,3 @@ class PyPdfWatcher(FileSystemEventHandler):
                 return monitored_file
         PyPdfWatcher.events_lock.release()
         return None
-
-
-
