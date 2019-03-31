@@ -1,4 +1,3 @@
-
 # Copyright 2013 Virantha Ekanayake All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,13 +16,13 @@ import os
 import shutil
 
 from pypdfocr_filer import PyFiler
-
 """
     Implementation of a filer class 
         -> Works on file system/directory structure
 """
+
+
 class PyFilerDirs(PyFiler):
-    
     def __init__(self):
         self.target_folder = None
         self.default_folder = None
@@ -31,7 +30,8 @@ class PyFilerDirs(PyFiler):
         self.folder_targets = {}
 
     def add_folder_target(self, folder, keywords):
-        assert folder not in self.folder_targets, "Target folder already defined! (%s)" % (folder)
+        assert folder not in self.folder_targets, "Target folder already defined! (%s)" % (
+            folder)
         self.folder_targets[folder] = keywords
 
     def file_original(self, original_filename):
@@ -40,9 +40,12 @@ class PyFilerDirs(PyFiler):
             return original_filename
 
         tgt_path = self.original_move_folder
-        logging.debug("Moving original %s to %s" % (original_filename, tgt_path))
-        tgtfilename = os.path.join(tgt_path, os.path.basename(original_filename))
-        tgtfilename = self._get_unique_filename_by_appending_version_integer(tgtfilename)
+        logging.debug("Moving original %s to %s" % (original_filename,
+                                                    tgt_path))
+        tgtfilename = os.path.join(tgt_path,
+                                   os.path.basename(original_filename))
+        tgtfilename = self._get_unique_filename_by_appending_version_integer(
+            tgtfilename)
 
         shutil.move(original_filename, tgtfilename)
         return tgtfilename
@@ -52,11 +55,12 @@ class PyFilerDirs(PyFiler):
         assert self.default_folder != None
 
         if not foldername:
-            logging.info("[DEFAULT] %s --> %s" % (filename, self.default_folder))
+            logging.info("[DEFAULT] %s --> %s" % (filename,
+                                                  self.default_folder))
             tgt_path = os.path.join(self.target_folder, self.default_folder)
-        else:   
+        else:
             logging.info("[MATCH] %s --> %s" % (filename, foldername))
-            tgt_path = os.path.join(self.target_folder,foldername)
+            tgt_path = os.path.join(self.target_folder, foldername)
 
         if not os.path.exists(tgt_path):
             logging.debug("Making path %s" % tgt_path)
@@ -64,9 +68,8 @@ class PyFilerDirs(PyFiler):
 
         logging.debug("Moving %s to %s" % (filename, tgt_path))
         tgtfilename = os.path.join(tgt_path, os.path.basename(filename))
-        tgtfilename = self._get_unique_filename_by_appending_version_integer(tgtfilename)
+        tgtfilename = self._get_unique_filename_by_appending_version_integer(
+            tgtfilename)
 
         shutil.move(filename, tgtfilename)
         return tgtfilename
-
-
