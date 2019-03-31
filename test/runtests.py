@@ -2786,12 +2786,13 @@ import sys
 import base64
 import zlib
 
+
 class DictImporter(object):
     def __init__(self, sources):
         self.sources = sources
 
     def find_module(self, fullname, path=None):
-        if fullname == "argparse" and sys.version_info >= (2,7):
+        if fullname == "argparse" and sys.version_info >= (2, 7):
             # we were generated with <python2.7 (which pulls in argparse)
             # but we are running now on a stdlib which has it, so use that.
             return None
@@ -2827,11 +2828,12 @@ class DictImporter(object):
             res = self.sources.get(name + '.__init__')
         return res
 
+
 if __name__ == "__main__":
     if sys.version_info >= (3, 0):
         exec("def do_exec(co, loc): exec(co, loc)\n")
         import pickle
-        sources = sources.encode("ascii") # ensure bytes
+        sources = sources.encode("ascii")  # ensure bytes
         sources = pickle.loads(zlib.decompress(base64.decodebytes(sources)))
     else:
         import cPickle as pickle
