@@ -4,10 +4,8 @@ import pytest
 
 
 class TestOptions:
-
     def setup(self):
         self.p = P.PyPDFOCR()
-
 
     def test_standalone(self):
         opts = ["blah.pdf"]
@@ -15,18 +13,18 @@ class TestOptions:
 
         opts.append('-d')
         self.p.get_options(opts)
-        assert(self.p.debug)
+        assert (self.p.debug)
 
         opts.append('-v')
         self.p.get_options(opts)
-        assert(self.p.verbose)
+        assert (self.p.verbose)
 
         opts.append('--preprocess')
         self.p.get_options(opts)
-        assert(not self.p.skip_preprocess)
+        assert (not self.p.skip_preprocess)
 
-        assert(not self.p.enable_filing)
-        assert(self.p.config == {})
+        assert (not self.p.enable_filing)
+        assert (self.p.config == {})
 
     def test_standalone_filing(self):
         opts = ["blah.pdf"]
@@ -39,15 +37,15 @@ class TestOptions:
         # Assert that it checks that the config file is present
         opts.append('--config=test_option_config.yaml')
         self.p.get_options(opts)
-        assert(self.p.enable_filing)
-        assert(self.p.config)
+        assert (self.p.enable_filing)
+        assert (self.p.config)
 
     def test_standalone_watch_conflict(self):
         # When pdf file is specified, we don't want to allow watch option
         opts = ["blah.pdf", '-w']
         with pytest.raises(SystemExit):
             self.p.get_options(opts)
-                
+
     def test_watch_filing(self):
         opts = ['-w']
         # Catch watch without a dir
@@ -56,10 +54,10 @@ class TestOptions:
 
         opts = ['-w temp']
         self.p.get_options(opts)
-        assert(self.p.watch_dir)
+        assert (self.p.watch_dir)
 
         opts.append('--config=test_option_config.yaml')
         self.p.get_options(opts)
-        assert(self.p.watch)
-        assert(self.p.config)
-        assert(not self.p.enable_filing)
+        assert (self.p.watch)
+        assert (self.p.config)
+        assert (not self.p.enable_filing)
