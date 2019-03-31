@@ -34,7 +34,8 @@ class PyPdfWatcher(FileSystemEventHandler):
         self.monitor_dir = monitor_dir
         if not config: config = {}
 
-        self.scan_interval = config.get('scan_interval', 3) # If no updates in 3 seconds (or user specified option in config file) process file
+        # If no updates in 3 seconds (or user specified option in config file) process file
+        self.scan_interval = config.get('scan_interval', 3)
 
     def start(self):
         self.observer = Observer()
@@ -55,7 +56,8 @@ class PyPdfWatcher(FileSystemEventHandler):
         
     def rename_file_with_spaces(self, pdf_filename):
         """
-            Rename any portion of a filename that has spaces in the basename with underscores.
+            Rename any portion of a filename that has spaces in the basename 
+            with underscores.
             Does not affect spaces in the directory path.
 
             :param pdf_filename: Filename to remove spaces
@@ -75,12 +77,14 @@ class PyPdfWatcher(FileSystemEventHandler):
 
     def check_for_new_pdf(self,ev_path):
         """
-            Called by the file watching api on any file creations/modifications.
-            For any file ending with ".pdf", but not "_ocr.pdf", it adds new files
-            to the event queue with the current time stamp, or it updates existing files in
-            the queue with the current timestamp.  This queue is used to track files and
-            keep track of their last "touched" time, so we can start processing a file if
-            :func:`check_queue` finds a file that hasn't been touched in a while.
+            Called by the file watching api on any file 
+            creations/modifications. For any file ending with ".pdf", but not 
+            "_ocr.pdf", it adds new files to the event queue with the current 
+            time stamp, or it updates existing files in the queue with the 
+            current timestamp.  This queue is used to track files and keep 
+            track of their last "touched" time, so we can start processing a 
+            file if :func:`check_queue` finds a file that hasn't been touched 
+            in a while.
 
             If the file does note exist in the events dict:
 
@@ -104,7 +108,9 @@ class PyPdfWatcher(FileSystemEventHandler):
                         del PyPdfWatcher.events[ev_path]
                     else: 
                         newTime = time.time()
-                        logging.debug ( "%s already in event queue, updating timestamp to %d" % (ev_path, newTime))
+                        logging.debug ( 
+                                "%s already in event queue, updating timestamp to %d" 
+                                % (ev_path, newTime))
                         PyPdfWatcher.events[ev_path]  = newTime
                 PyPdfWatcher.events_lock.release()
 
@@ -127,8 +133,8 @@ class PyPdfWatcher(FileSystemEventHandler):
             This function is called at regular intervals by :func:`start`.
             
             Iterate through the events, and if there is any with a timestamp
-            greater than the scan_interval, return it and set its timestamp to -1
-            for purging later.
+            greater than the scan_interval, return it and set its timestamp to 
+            -1 for purging later.
 
             :returns: Filename if available to process, otherwise None.
         """
@@ -142,7 +148,8 @@ class PyPdfWatcher(FileSystemEventHandler):
                 # Remove this file from the dict
                 del PyPdfWatcher.events[monitored_file]
                 monitored_file = self.rename_file_with_spaces(monitored_file)
-                PyPdfWatcher.events[monitored_file] = -1 # Add back into queue and mark as not needing further action in the event handler
+                # Add back into queue and mark as not needing further action in the event handler
+                PyPdfWatcher.events[monitored_file] = -1
                 PyPdfWatcher.events_lock.release()
                 return monitored_file
         PyPdfWatcher.events_lock.release()
