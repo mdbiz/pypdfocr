@@ -1,4 +1,3 @@
-
 # Copyright 2015 Virantha Ekanayake All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,13 +13,15 @@
 # limitations under the License.
 
 import signal, logging
-
 """
     Used for handling keyboard interrupts in Pools.
         Basically, throw an Exception when we see the ctrl-c, so that it actaully is propagated to the parent class
 """
 
-class KeyboardInterruptError(Exception): pass
+
+class KeyboardInterruptError(Exception):
+    pass
+
 
 def signal_handle(_signal, frame):
     logging.debug("Stopping job")
@@ -31,4 +32,3 @@ def init_worker():
     """ used for catching ctrl-c
     """
     signal.signal(signal.SIGINT, signal_handle)
-
