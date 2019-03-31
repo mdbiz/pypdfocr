@@ -1,4 +1,3 @@
-
 # Copyright 2015 Virantha Ekanayake All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,16 +17,16 @@ import time
     Various utility classes
 """
 
-class Retry(object):
 
-    def __init__ (self, func, tries=3, pause=1):
+class Retry(object):
+    def __init__(self, func, tries=3, pause=1):
         self.func = func
         self.tries = tries
         self.pause = pause
-       
+
     def call_with_retry(self):
         tries = self.tries
-       
+
         val = None
         while tries > 0:
             try:
@@ -35,14 +34,13 @@ class Retry(object):
                 tries = 0
             except Exception as e:
                 logging.exception("intermediate failure")
-                logging.info("Retrying (tries left %d)" % (tries-1))
+                logging.info("Retrying (tries left %d)" % (tries - 1))
                 time.sleep(self.pause)
                 tries -= 1
                 if tries == 0:
                     raise e
 
         return val
-                
 
 
 class ExecutableSearcher(object):
@@ -51,13 +49,12 @@ class ExecutableSearcher(object):
 
 
 class WindowsExecutableSearcher(ExecutableSearcher):
-
     def __init__(self, possible_dir_names, possible_exe_names):
         """
 
         """
         if not exe_name.endswith('exe'):
-            self.exe_name = exe_name+'.exe'
+            self.exe_name = exe_name + '.exe'
         else:
             self.exe_name = exe_name
 
@@ -74,7 +71,3 @@ class WindowsExecutableSearcher(ExecutableSearcher):
                 pass
 
         return found_exe
-
-
-
-
