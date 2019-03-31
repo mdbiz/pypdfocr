@@ -5,7 +5,11 @@ Slimmed down fork of PyPDFOCR.
 Removing unnecessary options and fixing usual bugs that were left since project abandonment.
 Also updating necessary parts to enable using newer versions of dependencies: Tesseract OCR software, GhostScript, ImageMagick and Poppler.
 
-Evernote support is removed. Slim aims to be simple PDF OCR management and thus removing Evernote and focusing on folder/file management.
+Removed from original release:
+Evernote
+Coverage.py
+Fabric
+Sphinx
 
 This fork is focused on Windows usage. No guarantee for Mac OS and Linux.
 
