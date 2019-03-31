@@ -8,24 +8,6 @@ from setuptools import Command
 import os
 
 
-class PyTest(Command):
-    user_options = []
-
-    def initialize_options(self):
-        pass
-
-    def finalize_options(self):
-        pass
-
-    def run(self):
-        import sys, subprocess
-        cwd = os.getcwd()
-        os.chdir('test')
-        errno = subprocess.call([sys.executable, 'runtests.py'])
-        os.chdir(cwd)
-        raise SystemExit(errno)
-
-
 def read(*filenames, **kwargs):
     encoding = kwargs.get('encoding', 'utf-8')
     sep = kwargs.get('sep', '\n')
@@ -62,7 +44,4 @@ setup(
     },
     options={"pyinstaller": {
         "packages": packages
-    }},
-    cmdclass={
-        'test': PyTest
-    })
+    }})
