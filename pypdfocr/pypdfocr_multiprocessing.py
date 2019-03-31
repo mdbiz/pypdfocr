@@ -15,7 +15,6 @@
 
 import sys, os, multiprocessing.forking
 import logging
-
 """ Special work-around to support multiprocessing and pyinstaller --onefile on windows systms
 
     https://github.com/pyinstaller/pyinstaller/wiki/Recipe-Multiprocessing
@@ -24,6 +23,7 @@ import logging
 import multiprocessing.forking as forking
 import os
 import sys
+
 
 class _Popen(multiprocessing.forking.Popen):
     def __init__(self, *args, **kw):
@@ -44,10 +44,11 @@ class _Popen(multiprocessing.forking.Popen):
                 else:
                     os.putenv('_MEIPASS2', '')
 
+
 forking.Popen = _Popen
 
 #class Process(multiprocessing.Process):
-    #_Popen = _Popen
+#_Popen = _Popen
 
 # ...
 
