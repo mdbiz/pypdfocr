@@ -21,7 +21,7 @@ def run_tests():
         t = local("coveralls")
 
         # with open("test/COVERAGE.rst", "w") as f:
-        # f.write(t)
+        #     f.write(t)
 
 
 def push_docs():
