@@ -244,6 +244,13 @@ Or:
 
     pip install git+https://github.com/mdbiz/pypdfocr.git
 
+Downgrade reportlab (Reason: AttributeError: RotatedPara instance has no attribute 'blPara')
+
+::
+
+    pip uninstall reportlab
+    pip install reportlab==3.4.0
+
 Manual install
 ~~~~~~~~~~~~~~
 
@@ -339,13 +346,6 @@ Download Poppler http://poppler.freedesktop.org/  (`Windows <https://blog.alivat
 - Add poppler location C:\\Program Files\\poppler-0.68.0\\bin to your system PATH
 
 Install SlimPyPDFOCR using pip (instructions above)
-
-Downgrade reportlab (Reason: AttributeError: RotatedPara instance has no attribute 'blPara')
-
-::
-
-    pip uninstall reportlab
-    pip install reportlab==3.4.0
 
 
 Disclaimer
